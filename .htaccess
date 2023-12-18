@@ -1,15 +1,8 @@
-# DO NOT REMOVE THIS LINE AND THE LINES BELOW SSL_REDIRECT:byuwur.dev
-Options -MultiViews
 RewriteEngine On
-RewriteCond %{HTTPS} off
-RewriteCond %{HTTP_HOST} ^byuwur.dev$
-RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI}
-# DO NOT REMOVE THIS LINE AND THE LINES ABOVE SSL_REDIRECT:byuwur.dev
-#RewriteBase /byuwur.dev/
-RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME} !-f
-#Session garbage collector
-#php_value session.gc_maxlifetime 21600
+RewriteCond %{REQUEST_FILENAME} !-d
+#RewriteRule ^(.*)$ index.php?uri=/$1 [L,QSA]
+DirectoryIndex index.php
 #Error Handler
 ErrorDocument 404 /_error.php?e=404
 ErrorDocument 403 /_error.php?e=403
@@ -19,14 +12,6 @@ ErrorDocument 500 /_error.php?e=500
 ErrorDocument 502 /_error.php?e=502
 ErrorDocument 503 /_error.php?e=503
 ErrorDocument 504 /_error.php?e=504
-#In case you are using nginx add this line below
-# error_page 400 401 402 403 404 500 502 503 504 /_error.php?e=$status;
-#Alternate Index
-DirectoryIndex index.php
-#Misc
-RewriteRule ^es/?$ index.php?lang=es [NE,QSA]
-RewriteRule ^en/?$ index.php?lang=en [NE,QSA]
-#ANTISPAM
 #Block proxies almost of all kind. - tested HMA High +KA and did not passed.
 RewriteCond %{HTTP:HTTP_VIA}      !^$ [OR]
 RewriteCond %{HTTP:HTTP_X_FORWARDED_FOR}      !^$ [OR]
@@ -46,3 +31,8 @@ RewriteCond %{HTTP:HTTP_PROXY_CONNECTION}      !^$
 RewriteRule ^(.*)$ - [F]
 RewriteCond %{REQUEST_METHOD} ^(TRACE|TRACK)
 RewriteRule .* - [F]
+#Forbid
+<FilesMatch "^(.*\.)?(git|gitignore|rb|inc|ht|env|md|json|lock|htaccess|ini|log|pem|sql|txt)$">
+    Order deny,allow
+    Deny from all
+</FilesMatch>
