@@ -1,0 +1,34 @@
+<meta charset="utf-8" />
+<style>
+	a {
+		display: inline-block;
+		margin: 4px;
+		padding: 4px;
+		background-color: #eee;
+		color: #000;
+		border: 1px solid #000;
+	}
+</style>
+<a href="_error.html?e=404">ERROR 404</a>
+<a href="_error.html?e=403">ERROR 403</a>
+<a href="_error.html?e=401">ERROR 401</a>
+<a href="_error.html?e=400">ERROR 400</a>
+<a href="_error.html?e=500">ERROR 500</a>
+<a href="_error.html?e=502">ERROR 502</a>
+<a href="_error.html?e=503">ERROR 503</a>
+<a href="_error.html?e=504">ERROR 504</a>
+<br />
+Usa una cookie "lang" o usa una <code>petición GET "lang"</code> para configurar un idioma.<br />
+Set a cookie "lang" or use the <code>GET request "lang"</code> to set a language.<br />
+<a href="?lang=es">Poner en Español <code>(GET)</code></a>
+<a href="?lang=en">Set in English <code>(GET)</code></a>
+<br />
+Para usar la página de error en tu servidor Apache, recuerda incluir el archivo <code>.htacess</code> o configura directamente tu <code>apache.conf</code>.<br />
+To use the error page on your Apache server, remember to include the <code>.htacess</code> file or configure your <code>apache.conf</code> directly.<br />
+<script>
+	"use strict";
+	const params = new URLSearchParams(window.location.search);
+	const lang = params.get("lang") || `; ${document.cookie}`.split(`; lang=`).pop().split(";").shift() || "es";
+	document.documentElement.lang = lang;
+	document.cookie = "lang=" + lang + ";max-age=31536000;path=/;samesite;";
+</script>

@@ -11,6 +11,7 @@ This repository provides a simple and customizable HTTP error page solution for 
 -   **Customizable error pages:** Easily modify the provided templates to match the style and branding of your site.
 -   **Support for multiple HTTP error codes:** Includes predefined templates for common HTTP errors like 404, 500, and more.
 -   **Easy integration with Apache and Nginx:** Compatible with popular web servers, making it easy to deploy.
+-   **No attachments:** Use the HTML file to handle any server in any language, as you please.
 
 ## How is it done?
 
@@ -18,8 +19,8 @@ This repository provides a simple and customizable HTTP error page solution for 
 
 -   **.htaccess:** Configuration file for Apache servers. Manages redirects and specifies custom error pages.
 -   **nginx.server.common.conf:** Configuration file for Nginx servers. Provides settings for error handling and custom error pages.
--   **\_error.php:** Handles the display of error messages based on the HTTP status code. This file is designed to be easily customizable for different error pages.
--   **index.php:** An optional file that can be used as the main entry point for your server.
+-   **\_error.html/php:** Handles the display of error messages based on the HTTP status code. This file is designed to be easily customizable for different error pages.
+-   **index.html/php:** An optional file that can be used as the main entry point for your server.
 
 ## Usage
 
@@ -35,7 +36,7 @@ This repository provides a simple and customizable HTTP error page solution for 
     - **Apache:** Use the provided `.htaccess` file to manage redirects and error handling.
     - **Nginx:** Include the `nginx.server.common.conf` in your server block configuration.
 
-3. **Customize error pages:** Modify the `_error.php` file to change the appearance and content of the error pages.
+3. **Customize error pages:** Modify the `_error.html` file to change the appearance and content of the error pages.
 
 4. **Deploy to your server:** Upload the files to your server and ensure your server configuration points to the correct paths for error handling.
 
