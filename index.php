@@ -1,26 +1,8 @@
 <?php
-if (isset($_GET['lang']))
-    switch ($_GET['lang']) {
-        case 'es':
-        default:
-            setcookie('lang', 'es', time() + 31536000, '/', '', false, false);
-            break;
-        case 'en':
-            setcookie('lang', 'en', time() + 31536000, '/', '', false, false);
-            break;
-    }
-else if (isset($_COOKIE['lang']))
-    switch ($_COOKIE['lang']) {
-        case 'es':
-        default:
-            setcookie('lang', 'es', time() + 31536000, '/', '', false, false);
-            break;
-        case 'en':
-            setcookie('lang', 'en', time() + 31536000, '/', '', false, false);
-            break;
-    }
-else setcookie('lang', 'es', time() + 31536000, '/', '', false, false);
+$lang = isset($_GET["lang"]) ? $_GET["lang"] : (isset($_COOKIE["lang"]) ? $_COOKIE["lang"] : "es");
+setcookie("lang", $lang, time() + 31536000, "/", "", false, false);
 ?>
+<meta charset="utf-8" />
 <style>
     a {
         display: inline-block;

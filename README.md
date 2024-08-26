@@ -1,4 +1,4 @@
-# byuwur/easy-spa-php
+# byuwur/easy-server-http-error-page
 
 **Easy Server HTTP Error Page**
 
