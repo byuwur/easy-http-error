@@ -2,6 +2,8 @@
 
 **Easy Server HTTP Error Page**
 
+Test it out at: [byuwur.net/error](https://byuwur.net/error)
+
 ## What's this about?
 
 This repository provides a simple and customizable HTTP error page solution for servers. It allows for quick and easy setup of error handling pages, ensuring a user-friendly experience when issues arise on your server.
@@ -42,4 +44,4 @@ This repository provides a simple and customizable HTTP error page solution for 
 
 ## License
 
-This project is licensed under the MIT License. See the LICENSE file for details.
+MIT (c) Andrés Trujillo [Mateus] byUwUr
