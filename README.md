@@ -1,8 +1,10 @@
-# byuwur/easy-server-http-error-page
+## This now forms part of [github.com/byuwur/spa.php](https://github.com/byuwur/spa.php). This repo will no longer be maintained to keep this in order in the base repo it is used. [This repo can also be used standalone]
+
+# byuwur/easy-http-error
 
 **Easy Server HTTP Error Page**
 
-Test it out at: [byuwur.net/error](https://byuwur.net/error)
+Test it out at: [byuwur.co/error](https://byuwur.co/error)
 
 ## What's this about?
 
