@@ -4,11 +4,11 @@
  * File: _error.php
  * Desc: Handles server errors. Standalone.
  * Deps: none
- * Copyright (c) 2024 Andrés Trujillo [Mateus] byUwUr
+ * Copyright (c) 2025 Andrés Trujillo [Mateus] byUwUr
  */
 
-// [Mateus] byUwUr --- Easy HTTP Error Page --- 2024 v3. Check out: https://github.com/byuwur/easy-server-http-error-page
-$mateus_link = "https://byuwur.net";
+// [Mateus] byUwUr --- Easy HTTP Error Page --- 2025 v5. Check out: https://github.com/byuwur/easy-http-error
+$mateus_link = "https://byuwur.co";
 $lang = isset($_GET["lang"]) ? $_GET["lang"] : (isset($_COOKIE["lang"]) ? $_COOKIE["lang"] : "es");
 echo "<html lang='" . $lang . "' dir='ltr'>";
 setcookie("lang", $lang, time() + 31536000, "/", "", false, false);
@@ -16,17 +16,15 @@ switch ($lang) {
     case "es":
     default:
         $_back = "Volver";
-        $_sorry = "Lamentamos las molestias. ¿Qué desea hacer?";
-        $_out = "Sácame de aquí";
+        $_sorry = "Lamentamos las molestias.";
         break;
     case "en":
         $_back = "Go back";
-        $_sorry = "Sorry for the inconvenience. What would you like to do?";
-        $_out = "Get me out of here";
+        $_sorry = "Sorry for the inconvenience.";
         break;
 }
 $err = isset($_GET["e"]) ? $_GET["e"] : "999";
-http_response_code($err);
+//http_response_code($err);
 switch ($err) {
     case "404":
         $_estringes = "no encontrado";
@@ -152,8 +150,8 @@ switch ($err) {
     <title>ERROR <?= $_GET["e"]; ?></title>
     <meta property="og:title" content="[Mateus] byUwUr" />
     <meta property="og:type" content="website" />
-    <meta property="og:image" content="https://byuwur.net/img/icon.png" />
-    <meta property="og:url" content="https://byuwur.net" />
+    <meta property="og:image" content="https://byuwur.co/img/icon.png" />
+    <meta property="og:url" content="https://byuwur.co" />
     <meta property="og:site_name" content="byuwur.dev" />
     <meta property="og:description" content="Mateus' portfolio." />
     <meta http-equiv="Content-Language" content="es,en" />
@@ -290,9 +288,15 @@ switch ($err) {
             }
         }
     </style>
+    <script>
+        window.addEventListener("popstate", function(e) {
+            window.location.reload();
+        });
+    </script>
 </head>
 
 <body>
+    <!-- [Mateus] byUwUr --- Easy HTTP Error Page --- 2025 v5. Check out: https://github.com/byuwur/easy-http-error -->
     <div id="body">
         <svg id="cubes" viewBox="0 0 837 1045" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
             <g id="page1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
@@ -316,7 +320,6 @@ switch ($err) {
             <span><?= $_sorry; ?></span>
             <div id="action-link-wrap">
                 <a onclick="history.back(-1)"><?= $_back; ?></a>
-                <a href="./"><?= $_out; ?></a>
             </div>
             <span><?= isset($_POST["custom_error_message"]) ? "System error:<br>" . $_POST["custom_error_message"] : ""; ?></span>
         </div>
