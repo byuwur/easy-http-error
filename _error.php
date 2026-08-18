@@ -315,6 +315,7 @@ function e(string $value): string
   </style>
   <script>
     window.addEventListener("popstate", function () {
+      console.log('Go back event');
       window.location.reload();
     });
   </script>
@@ -353,7 +354,7 @@ function e(string $value): string
   </div>
   <script>
     "use strict";
-    document.getElementById("back").addEventListener("click", () => history.back());
+    document.getElementById("back").addEventListener("click", () => { console.log('Go back button'); history.back() });
   </script>
 </body>
 
