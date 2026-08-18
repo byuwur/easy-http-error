@@ -12,37 +12,61 @@ This repository provides a simple and customizable HTTP error page solution for 
 
 ## What does it do?
 
--   **Customizable error pages:** Easily modify the provided templates to match the style and branding of your site.
--   **Support for multiple HTTP error codes:** Includes predefined templates for common HTTP errors like 404, 500, and more.
--   **Easy integration with Apache and Nginx:** Compatible with popular web servers, making it easy to deploy.
--   **No attachments:** Use the HTML file to handle any server in any language, as you please.
+- Provides one static HTML error page that works without PHP or application code.
+- Provides an optional PHP equivalent.
+- Supports `400`, `401`, `403`, `404`, `500`, `502`, `503`, and `504`.
+- Supports Spanish (`es`) and English (`en`).
+- Includes minimal Apache and Nginx configuration examples.
+- Treats all user-provided custom messages as plain text.
 
-## How is it done?
+## Core files
 
-### Core Files [in priority order]
-
--   **.htaccess:** Configuration file for Apache servers. Manages redirects and specifies custom error pages.
--   **nginx.server.common.conf:** Configuration file for Nginx servers. Provides settings for error handling and custom error pages.
--   **\_error.html/php:** Handles the display of error messages based on the HTTP status code. This file is designed to be easily customizable for different error pages.
--   **index.html/php:** An optional file that can be used as the main entry point for your server.
+- **`_error.html`** — recommended error page. Static and independent of the application runtime.
+- **`_error.php`** — optional PHP equivalent.
+- **`.htaccess`** — Apache `ErrorDocument` directives only.
+- **`nginx.server.common.conf`** — Nginx `error_page` directives only.
+- **`index.html` / `index.php`** — local demos; not required in production.
 
 ## Usage
 
-1. **Clone the repository:**
+Clone the repository:
 
-    ```bash
-    git clone https://github.com/yourusername/easy-server-http-error-page.git
-    cd easy-server-http-error-page
-    ```
+```bash
+git clone https://github.com/byuwur/easy-http-error.git
+cd easy-http-error
+```
 
-2. **Configure your web server:**
+### Apache
 
-    - **Apache:** Use the provided `.htaccess` file to manage redirects and error handling.
-    - **Nginx:** Include the `nginx.server.common.conf` in your server block configuration.
+Place `_error.html` in the server `DocumentRoot`, then use the included `.htaccess` file or copy its `ErrorDocument` directives into the virtual-host configuration.
 
-3. **Customize error pages:** Modify the `_error.html` file to change the appearance and content of the error pages.
+### Nginx
 
-4. **Deploy to your server:** Upload the files to your server and ensure your server configuration points to the correct paths for error handling.
+Place `_error.html` in the server root and include the contents of `nginx.server.common.conf` inside an appropriate `http`, `server`, or `location` context.
+
+## Parameters
+
+Both implementations accept:
+
+- `e`: one of the supported HTTP status codes. Missing or invalid values fall back to `500`.
+- `lang`: `es` or `en`. Missing or invalid values fall back to `es`.
+- `custom_message`: optional plain-text custom message.
+
+The PHP implementation also keeps compatibility with `POST custom_error_message`.
+
+Examples:
+
+```text
+_error.html?e=404&lang=en
+_error.php?e=503&lang=es
+_error.html?e=500&custom_message=Maintenance
+```
+
+Custom messages are rendered as text, never as HTML.
+
+## Why `_error.html` is the recommended server handler
+
+A static error document can still be served when PHP, a framework, or application code is the component that failed. Keeping the primary error page independent from the application runtime reduces failure modes.
 
 ## License
 
