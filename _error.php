@@ -6,6 +6,11 @@
  * Copyright (c) 2026 Andrés Trujillo [Mateus] byUwUr
  */
 
+if (isset($_GET["probe"]) || isset($_POST["probe"])) {
+  http_response_code(204);
+  exit;
+}
+
 $errors = [
   400 => [
     "es" => "solicitud incorrecta",
@@ -98,6 +103,7 @@ setcookie("lang", $lang, [
   "path" => "/",
   "samesite" => "Lax",
 ]);
+
 http_response_code($err);
 
 function e(string $value): string
