@@ -257,7 +257,7 @@ function e(string $value): string
       margin: 32px 0;
     }
 
-    #action-link-wrap button {
+    #action-link-wrap .btn {
       background: #600;
       border: 0;
       color: #fff;
@@ -270,11 +270,11 @@ function e(string $value): string
       text-transform: uppercase;
     }
 
-    #action-link-wrap button:hover {
+    #action-link-wrap .btn:hover {
       background: #900;
     }
 
-    #action-link-wrap button:focus-visible {
+    #action-link-wrap .btn:focus-visible {
       outline: 2px solid #fff;
       outline-offset: 3px;
     }
@@ -319,6 +319,7 @@ function e(string $value): string
     }
   </style>
   <script>
+    "use strict";
     window.addEventListener("popstate", function () {
       console.log('Go back event');
       window.location.reload();
@@ -352,15 +353,12 @@ function e(string $value): string
       <span><?= e($error["message"][$lang]) ?></span>
       <span><?= e($sorry) ?></span>
       <div id="action-link-wrap">
-        <button id="back" type="button"><?= e($back) ?></button>
+        <button id="back" type="button" class="btn" onclick="history.back();"><?= e($back) ?></button>
+        <!--a href="javascript:history.back();" class="btn"><?= e($back) ?></a-->
       </div>
       <span><?= e($customMessage) ?></span>
     </div>
   </div>
-  <script>
-    "use strict";
-    document.getElementById("back").addEventListener("click", () => { console.log('Go back button'); history.back() });
-  </script>
 </body>
 
 </html>
