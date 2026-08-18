@@ -82,10 +82,9 @@ $langInput = $_GET["lang"] ?? $_COOKIE["lang"] ?? "es";
 $lang = is_string($langInput) && $langInput === "en" ? "en" : "es";
 
 $errorInput = $_GET["e"] ?? null;
-$err = is_string($errorInput) && ctype_digit($errorInput) ? (int) $errorInput : 500;
-if (!isset($errors[$err])) {
+$err = (is_string($errorInput) || is_int($errorInput)) && ctype_digit((string) $errorInput) ? (int) $errorInput : 500;
+if (!isset($errors[$err]))
   $err = 500;
-}
 
 $customMessage = "";
 if (isset($_POST["custom_error_message"]) && is_string($_POST["custom_error_message"])) {
