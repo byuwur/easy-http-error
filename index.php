@@ -13,11 +13,11 @@ setcookie("lang", $lang, ["expires" => time() + 31536000, "path" => "/", "samesi
   <style>
     a {
       display: inline-block;
-      margin: 4px;
-      padding: 4px;
+      margin: 0.25rem;
+      padding: 0.25rem;
       background-color: #eee;
       color: #000;
-      border: 1px solid #000;
+      border: 0.0625rem solid #000;
     }
   </style>
 </head>
