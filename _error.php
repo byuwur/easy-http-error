@@ -118,7 +118,7 @@ function e(string $value): string
   <meta charset="utf-8">
   <meta property="og:title" content="[Mateus] byUwUr" />
   <meta property="og:type" content="website" />
-  <meta property="og:image" content="https://byuwur.co/img/icon.png" />
+  <meta property="og:image" content="https://byuwur.github.io/img/logo.png" />
   <meta property="og:url" content="https://byuwur.co" />
   <meta property="og:site_name" content="byuwur.dev" />
   <meta property="og:description" content="Mateus' portfolio." />
